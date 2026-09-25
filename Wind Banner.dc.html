@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=Archivo+Black&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Archivo, system-ui, sans-serif; color: #10242E; background: #F6F3EE; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #306176; text-decoration: none; transition: color .18s ease; }
+  a:hover { color: #C8481B; }
+  input, select, textarea, button { font-family: inherit; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid #306176; outline-offset: 1px; }
+  @keyframes wbFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes wbPop { 0% { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.18); opacity: 1; } 100% { transform: scale(1); } }
+  @keyframes wbSway { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+  @keyframes wbPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(200,72,27,.35); } 50% { box-shadow: 0 0 0 10px rgba(200,72,27,0); } }
+  @keyframes wbRise { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="width:100%; background:#10242E; color:#C6D4DA; font-size:13px; padding:9px 20px; display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:center; align-items:center;">
+  <span style="font-weight:600; color:#fff;">Central de vendas 11 4646-3300</span>
+  <span>vendas@banderart.com.br</span>
+  <span style="color:#7E99A4;">Fábrica própria em Itaquaquecetuba / SP — produzido no Brasil</span>
+</div>
+
+<header style="position:sticky; top:0; z-index:40; background:rgba(255,255,255,0.96); backdrop-filter:blur(8px); border-bottom:1px solid #E2DED6;">
+  <div style="max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+    <a href="https://banderart.com.br" style="display:flex; align-items:center; gap:10px;">
+      <img src="https://banderart.com.br/wp-content/themes/Banderart/assets/images/logo.png" alt="Banderart" style="height:38px; width:auto; display:block;">
+    </a>
+    <nav style="display:flex; gap:20px; flex-wrap:wrap; font-size:14px; font-weight:600; color:#3A5460; margin-left:auto;">
+      <a href="#produto" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">O produto</a>
+      <a href="#tamanhos" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Tamanhos</a>
+      <a href="#arte" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Envio da arte</a>
+      <a href="#gabaritos" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Gabaritos</a>
+      <a href="#galeria" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Galeria</a>
+    </nav>
+    <a href="#pedido" style="background:#306176; color:#fff; padding:11px 20px; border-radius:2px; font-size:14px; font-weight:700; letter-spacing:0.01em; transition:transform .16s ease, background .18s ease, box-shadow .18s ease;" style-hover="background:#1F4454; transform:translateY(-2px); box-shadow:0 8px 18px rgba(16,36,46,.22);" style-active="transform:translateY(0) scale(.98);">Montar meu pedido</a>
+  </div>
+</header>
+
+<section id="produto" style="background:#fff; border-bottom:1px solid #E2DED6;">
+  <div style="max-width:1200px; margin:0 auto; padding:56px 20px 64px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:48px; align-items:center; animation:wbFade .5s ease both;">
+    <div style="min-width:0;">
+      <div style="display:inline-flex; align-items:center; gap:8px; background:#E7EEF1; color:#1F4454; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:7px 12px; border-radius:2px;">Modelo exclusivo e patenteado Banderart®</div>
+      <h1 style="font-family:'Archivo Black', Archivo, sans-serif; font-size:clamp(38px, 5.4vw, 62px); line-height:0.98; letter-spacing:-0.025em; margin:18px 0 0;">Wind Banner<br><span style="color:#306176;">sua marca girando</span> onde o público está</h1>
+      <p style="font-size:18px; line-height:1.55; color:#3A5460; margin:20px 0 0; max-width:54ch; text-wrap:pretty;">Banner giratório de dupla face, vazado, em tecido Duralon® 100% poliéster com estrutura super reforçada em aço. Montagem em minutos, visibilidade de longe — em eventos, praia, pontos de venda ou na frente da sua empresa.</p>
+      <ul style="list-style:none; padding:0; margin:26px 0 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px 18px; font-size:15px; font-weight:600; color:#10242E;">
+        <li style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#C8481B; font-weight:800;">—</span>Impressão dupla face vazada</li>
+        <li style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#C8481B; font-weight:800;">—</span>Tecido Duralon® 100% poliéster</li>
+        <li style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#C8481B; font-weight:800;">—</span>Normas ABNT NBR 16286 e 16287</li>
+        <li style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#C8481B; font-weight:800;">—</span>4 tamanhos + projetos especiais</li>
+      </ul>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:32px;">
+        <a href="#pedido" style="background:#C8481B; color:#fff; padding:16px 28px; border-radius:2px; font-size:16px; font-weight:700; transition:transform .16s ease, background .18s ease, box-shadow .2s ease;" style-hover="background:#A93A13; transform:translateY(-2px); box-shadow:0 12px 24px rgba(200,72,27,.3);" style-active="transform:translateY(0) scale(.98);">Montar pedido e enviar arte</a>
+        <a href="#gabaritos" style="border:2px solid #306176; color:#306176; padding:14px 26px; border-radius:2px; font-size:16px; font-weight:700; transition:background .18s ease, transform .16s ease;" style-hover="background:#E7EEF1; transform:translateY(-2px);" style-active="transform:translateY(0) scale(.98);">Baixar gabarito</a>
+      </div>
+      <p style="font-size:13px; color:#6B8390; margin:16px 0 0;">Produção em 7 dias úteis após aprovação da arte. Orçamento sem compromisso.</p>
+    </div>
+    <div style="min-width:0; position:relative;">
+      <div style="aspect-ratio:4/5; background:#E7EEF1; border-radius:2px; overflow:hidden;">
+        <img src="https://banderart.com.br/wp-content/uploads/2018/08/windbanner-3.jpg" alt="Wind Banner Banderart em evento ao ar livre" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.2s ease;" style-hover="transform:scale(1.04);">
+      </div>
+      <div style="position:absolute; left:-12px; bottom:24px; background:#10242E; color:#fff; padding:16px 20px; max-width:230px; border-radius:2px; transform-origin:bottom center; animation:wbSway 6s ease-in-out infinite;">
+        <div style="font-family:'Archivo Black', Archivo, sans-serif; font-size:30px; line-height:1;">5,00 m</div>
+        <div style="font-size:13px; color:#A9BEC7; margin-top:4px;">de altura no maior modelo — visível a centenas de metros</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#10242E; border-bottom:1px solid #E2DED6;">
+  <div style="position:relative; width:100%; height:clamp(300px, 38vw, 480px); overflow:hidden;">
+    <image-slot id="wb-pratica" shape="rect" fit="cover" placeholder="Solte aqui a foto panorâmica dos Wind Banners montados em evento (JPG horizontal, mín. 2000 px de largura)"></image-slot>
+    <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(16,36,46,.88) 0%, rgba(16,36,46,.55) 42%, rgba(16,36,46,0) 70%);"><div style="position: absolute; left: 300px; top: 50px; width: min(560px, 76%); padding: clamp(24px,4vw,52px); display: flex; flex-direction: column; justify-content: center; gap: 14px; pointer-events: none">
+      <span style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Wind Banner na prática</span>
+      
+      <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:clamp(24px,3.4vw,40px); line-height:1.05; letter-spacing:-0.02em; color:#fff;">Uma fileira de bandeiras girando muda o fluxo de gente</div><p style="font-size:16px; line-height:1.5; color:#E6EDF0; margin:0; max-width:44ch;">Eventos, postos, praias, feiras e frente de loja — montados pela nossa equipe e por clientes de todo o Brasil.</p>
+    </div></div>
+    
+  </div>
+</section>
+
+<sc-if value="{{ completo }}" hint-placeholder-val="{{ true }}" style="display: none">
+<section style="background: #fff">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+    <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:0; max-width:24ch;">Por que o Wind Banner funciona melhor que um banner parado</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1px; background:#E2DED6; margin-top:36px; border:1px solid #E2DED6;">
+      <div style="background:#fff; padding:28px; transition:transform .2s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,36,46,.10);">
+        <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#C8481B; font-size:15px;">01</div>
+        <h3 style="font-size:19px; margin:12px 0 8px; letter-spacing:-0.01em;">Gira com o vento</h3>
+        <p style="font-size:15px; line-height:1.55; color:#3A5460; margin:0;">A haste giratória mantém a bandeira esticada e em movimento — o olho humano captura movimento antes de cor ou texto.</p>
+      </div>
+      <div style="background:#fff; padding:28px; transition:transform .2s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,36,46,.10);">
+        <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#C8481B; font-size:15px;">02</div>
+        <h3 style="font-size:19px; margin:12px 0 8px; letter-spacing:-0.01em;">Dupla face vazada</h3>
+        <p style="font-size:15px; line-height:1.55; color:#3A5460; margin:0;">A sublimação atravessa o Duralon®: a marca é legível dos dois lados, sem dobrar tecido nem dobrar o preço.</p>
+      </div>
+      <div style="background:#fff; padding:28px; transition:transform .2s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,36,46,.10);">
+        <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#C8481B; font-size:15px;">03</div>
+        <h3 style="font-size:19px; margin:12px 0 8px; letter-spacing:-0.01em;">Monta em minutos</h3>
+        <p style="font-size:15px; line-height:1.55; color:#3A5460; margin:0;">Hastes encaixáveis, bainha reforçada e base à escolha. Um promotor monta e desmonta sozinho, quantas vezes precisar.</p>
+      </div>
+      <div style="background:#fff; padding:28px; transition:transform .2s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,36,46,.10);">
+        <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#C8481B; font-size:15px;">04</div>
+        <h3 style="font-size:19px; margin:12px 0 8px; letter-spacing:-0.01em;">Feito para durar fora</h3>
+        <p style="font-size:15px; line-height:1.55; color:#3A5460; margin:0;">Estrutura super reforçada em aço, costura industrial e tecido de alta tenacidade — sol, chuva e vento de litoral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section id="tamanhos" style="background: #10242E; color: #fff">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+    <div style="display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:0;">Escolha o tamanho</h2>
+        <p style="font-size:16px; color:#A9BEC7; margin:10px 0 0; max-width:58ch;">Os quatro modelos desenhados em escala, ao lado de uma pessoa de 1,75 m. Clique na bandeira para marcar o tamanho no seu pedido.</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#A9BEC7;">
+        <span style="width:14px; height:14px; background:#C8481B; display:block; border-radius:1px;"></span>selecionado
+        <span style="width:14px; height:14px; background:#C8481B; opacity:.3; display:block; border-radius:1px; margin-left:10px;"></span>outros modelos
+      </div>
+    </div>
+
+    <div style="margin-top:34px; background:#17323D; border:1px solid #23414E; border-radius:2px; overflow-x:auto;">
+      <div style="position:relative; min-width:700px; height:498px; padding:0 24px 0 56px;">
+        <div style="position:absolute; left:56px; right:24px; bottom:436px; border-top:1px dashed #23414E;"></div>
+        <span style="position:absolute; left:14px; bottom:428px; font-size:11px; font-weight:600; color:#8FA9B4;">5 m</span>
+        <div style="position:absolute; left:56px; right:24px; bottom:358px; border-top:1px dashed #23414E;"></div>
+        <span style="position:absolute; left:14px; bottom:350px; font-size:11px; font-weight:600; color:#8FA9B4;">4 m</span>
+        <div style="position:absolute; left:56px; right:24px; bottom:280px; border-top:1px dashed #23414E;"></div>
+        <span style="position:absolute; left:14px; bottom:272px; font-size:11px; font-weight:600; color:#8FA9B4;">3 m</span>
+        <div style="position:absolute; left:56px; right:24px; bottom:202px; border-top:1px dashed #23414E;"></div>
+        <span style="position:absolute; left:14px; bottom:194px; font-size:11px; font-weight:600; color:#8FA9B4;">2 m</span>
+        <div style="position:absolute; left:56px; right:24px; bottom:124px; border-top:1px dashed #23414E;"></div>
+        <span style="position:absolute; left:14px; bottom:116px; font-size:11px; font-weight:600; color:#8FA9B4;">1 m</span>
+        <div style="position:absolute; left:20px; right:24px; bottom:46px; border-top:2px solid #3A5B69;"></div>
+
+        <div style="position: absolute; left: 56px; right: 24px; bottom: 48px; display: flex; align-items: flex-end; gap: clamp(170px,4.4vw,58px)">
+          <div style="position:relative; display:flex; flex-direction:column; align-items:center; flex:none;">
+            <svg viewBox="0 0 40 175" width="31" height="137" role="img" aria-label="Silhueta de pessoa com 1,75 m de altura" style="display:block;">
+              <circle cx="20" cy="15" r="12" fill="#7E99A4"></circle>
+              <path d="M20 30c-9 0-15 6-15 15v34h5l2 96h6l3-58h-1l3 58h6l2-96h5V45c0-9-6-15-15-15z" fill="#7E99A4"></path>
+            </svg>
+            <span style="position:absolute; top:100%; margin-top:12px; font-size:11px; color:#8FA9B4; white-space:nowrap;">1,75 m</span>
+          </div>
+
+          <div onClick="{{ sizeSelect.s1 }}" role="button" tabindex="0" style="position:relative; display:flex; align-items:flex-end; gap:2px; flex:none; cursor:pointer; transition:transform .22s ease;" style-hover="transform:translateY(-8px);" style-active="transform:translateY(-2px);">
+            <div style="display:flex; align-items:flex-end; gap:2px; opacity:{{ dim.s1 }}; transition:opacity .25s ease;"><div style="width:4px; height:156px; background:linear-gradient(#C6D4DA,#7E99A4); border-radius:2px 2px 0 0; flex:none;"></div>
+            <svg width="55" height="156" viewBox="0 0 55 156" style="display:block; overflow:visible;">
+              <path d="M0,0 Q52,0 55,34 L55,112 Q50,148 14,156 L0,156 Z" fill="#C8481B"></path>
+            </svg></div>
+            <div style="position:absolute; top:100%; left:0; margin-top:12px; white-space:nowrap;">
+              <div style="font-size:13px; font-weight:800; color:{{ sizeText.s1 }}; transition:color .2s ease;">0,70 × 2,00 m</div>
+              <div style="font-size:11px; color:#8FA9B4; margin-top:2px;">interno</div>
+            </div>
+          </div>
+
+          <div onClick="{{ sizeSelect.s2 }}" role="button" tabindex="0" style="position:relative; display:flex; align-items:flex-end; gap:2px; flex:none; cursor:pointer; transition:transform .22s ease;" style-hover="transform:translateY(-8px);" style-active="transform:translateY(-2px);">
+            <div style="display:flex; align-items:flex-end; gap:2px; opacity:{{ dim.s2 }}; transition:opacity .25s ease;"><div style="width:5px; height:234px; background:linear-gradient(#C6D4DA,#7E99A4); border-radius:2px 2px 0 0; flex:none;"></div>
+            <svg width="70" height="234" viewBox="0 0 70 234" style="display:block; overflow:visible;">
+              <path d="M0,0 Q66,0 70,51 L70,168 Q63,222 18,234 L0,234 Z" fill="#C8481B"></path>
+            </svg></div>
+            <div style="position:absolute; top:100%; left:0; margin-top:12px; white-space:nowrap;">
+              <div style="font-size:13px; font-weight:800; color:{{ sizeText.s2 }}; transition:color .2s ease;">0,90 × 3,00 m</div>
+              <div style="font-size:11px; color:#FFB27A; margin-top:2px;">mais vendido</div>
+            </div>
+          </div>
+
+          <div onClick="{{ sizeSelect.s3 }}" role="button" tabindex="0" style="position:relative; display:flex; align-items:flex-end; gap:2px; flex:none; cursor:pointer; transition:transform .22s ease;" style-hover="transform:translateY(-8px);" style-active="transform:translateY(-2px);">
+            <div style="display:flex; align-items:flex-end; gap:2px; opacity:{{ dim.s3 }}; transition:opacity .25s ease;"><div style="width:5px; height:312px; background:linear-gradient(#C6D4DA,#7E99A4); border-radius:2px 2px 0 0; flex:none;"></div>
+            <svg width="94" height="312" viewBox="0 0 94 312" style="display:block; overflow:visible;">
+              <path d="M0,0 Q89,0 94,69 L94,225 Q85,296 24,312 L0,312 Z" fill="#C8481B"></path>
+            </svg></div>
+            <div style="position:absolute; top:100%; left:0; margin-top:12px; white-space:nowrap;">
+              <div style="font-size:13px; font-weight:800; color:{{ sizeText.s3 }}; transition:color .2s ease;">1,20 × 4,00 m</div>
+              <div style="font-size:11px; color:#8FA9B4; margin-top:2px;">via movimentada</div>
+            </div>
+          </div>
+
+          <div onClick="{{ sizeSelect.s4 }}" role="button" tabindex="0" style="position:relative; display:flex; align-items:flex-end; gap:2px; flex:none; cursor:pointer; transition:transform .22s ease;" style-hover="transform:translateY(-8px);" style-active="transform:translateY(-2px);">
+            <div style="display:flex; align-items:flex-end; gap:2px; opacity:{{ dim.s4 }}; transition:opacity .25s ease;"><div style="width:6px; height:390px; background:linear-gradient(#C6D4DA,#7E99A4); border-radius:2px 2px 0 0; flex:none;"></div>
+            <svg width="94" height="390" viewBox="0 0 94 390" style="display:block; overflow:visible;">
+              <path d="M0,0 Q89,0 94,86 L94,281 Q85,371 24,390 L0,390 Z" fill="#C8481B"></path>
+            </svg></div>
+            <div style="position:absolute; top:100%; left:0; margin-top:12px; white-space:nowrap;">
+              <div style="font-size:13px; font-weight:800; color:{{ sizeText.s4 }}; transition:color .2s ease;">1,20 × 5,00 m</div>
+              <div style="font-size:11px; color:#8FA9B4; margin-top:2px;">máxima altura</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #23414E; padding:22px 24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px; align-items:center;">
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Selecionado</div>
+          <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:24px; color:#fff; margin-top:6px;">{{ sizeLabel }}</div>
+          <div style="font-size:13px; color:#FFB27A; margin-top:4px;">{{ sizeUse }}</div>
+          <div style="font-size:15px; color:#fff; margin-top:10px;"><span style="color:#8FA9B4; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">Bandeira impressa</span><br><strong style="font-size:20px;">{{ sizePreco }}</strong> <span style="font-size:12px; color:#8FA9B4;">por unidade</span></div>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Área de arte</div>
+          <div style="font-size:16px; color:#fff; margin-top:8px; line-height:1.45;">{{ sizeArea }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Fixação recomendada</div>
+          <div style="font-size:16px; color:#fff; margin-top:8px; line-height:1.45;">{{ sizeBase }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a href="#gabaritos" onClick="{{ gabaritoDoTamanho }}" style="text-align:center; background:#306176; color:#fff; padding:13px 18px; border-radius:2px; font-size:14px; font-weight:700; transition:background .18s ease, transform .16s ease;" style-hover="background:#3D7590; transform:translateY(-2px);" style-active="transform:translateY(0) scale(.98);">Baixar gabarito deste tamanho</a>
+          <a href="#pedido" style="text-align:center; border:1px solid #3A5B69; color:#C6D4DA; padding:12px 18px; border-radius:2px; font-size:14px; font-weight:700; transition:background .18s ease, color .18s ease;" style-hover="background:#23414E; color:#fff;">Usar no pedido</a>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:14px; color:#A9BEC7; margin:16px 0 0;">Projetos especiais em outras medidas: fale com o comercial em vendas@banderart.com.br.</p>
+  </div>
+</section>
+
+
+<section id="arte" style="background:#fff; border-top:1px solid #E2DED6;">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:44px;">
+    <div style="min-width:0;">
+      <div style="display:inline-block; background:#FCE9E0; color:#A93A13; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:7px 12px; border-radius:2px;">Envio da arte</div>
+      <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:16px 0 0;">Mande sua arte em alta resolução junto com o pedido</h2>
+      <p style="font-size:17px; line-height:1.55; color:#3A5460; margin:16px 0 0; max-width:56ch; text-wrap:pretty;">A impressão é por sublimação direta no Duralon®: o que sai no tecido é exatamente o que está no seu arquivo, ampliado para até 5 metros. Arquivo baixado da internet, print de tela ou logo tirado do site não aguentam essa ampliação — saem borrados e serrilhados.</p>
+      <div style="margin-top:28px; border-top:1px solid #E2DED6;">
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">01</span>
+          <div><strong style="display:block; font-size:16px;">Vetor é o ideal</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">PDF, AI, EPS ou CDR com todas as fontes convertidas em curvas e imagens incorporadas.</span></div>
+        </div>
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">02</span>
+          <div><strong style="display:block; font-size:16px;">Se for imagem, 150 dpi no tamanho final</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">TIFF, PSD ou JPG de máxima qualidade. Vale também 300 dpi a 50% do tamanho. Nunca use imagem de site.</span></div>
+        </div>
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">03</span>
+          <div><strong style="display:block; font-size:16px;">Cores em CMYK, Pantone indicado</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">Informe os Pantones da marca. Tons fluorescentes e metálicos não se reproduzem em tecido.</span></div>
+        </div>
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">04</span>
+          <div><strong style="display:block; font-size:16px;">Use o gabarito do tamanho escolhido</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">Ele já traz proporção, 5 cm de sangria no contorno e 10 cm livres na lateral da haste. Baixe abaixo e monte sua arte dentro dele.</span></div>
+        </div>
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">05</span>
+          <div><strong style="display:block; font-size:16px;">Dupla face é vazada</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">A tinta atravessa o tecido: o verso sai espelhado. Se quiser leitura correta dos dois lados, avise nas observações.</span></div>
+        </div>
+        <div style="display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #E2DED6; transition:background .18s ease;" style-hover="background:#F8FAFB;">
+          <span style="font-family:'Archivo Black',Archivo,sans-serif; color:#306176; font-size:14px; padding-top:3px;">06</span>
+          <div><strong style="display:block; font-size:16px;">Arquivos grandes</strong><span style="font-size:15px; color:#3A5460; line-height:1.5;">Até 200 MB você anexa no formulário. Acima disso, mande o link do WeTransfer ou Drive no campo de link.</span></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div id="gabaritos" style="min-width:0;">
+      <div style="background: #E7EEF1; border: 1px solid #C9D9DF; border-radius: 2px; padding: clamp(22px,3vw,30px); width: 565px; height: 863px">
+        <div style="font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#C8481B;">Gabaritos</div>
+        <h3 style="font-size:26px; letter-spacing:-0.02em; margin:12px 0 0;">Baixe o gabarito do seu tamanho</h3>
+        <p style="font-size:16px; line-height:1.55; color:#3A5460; margin:12px 0 0;">Cada gabarito vem em PDF e AI, na escala 1:10, com as marcações de corte, sangria e área da bainha da haste. Monte sua arte dentro dele e envie no pedido.</p>
+
+        <div style="display:grid; gap:10px; margin-top:22px;">
+          <sc-for list="{{ gabaritos }}" as="g" hint-placeholder-count="4">
+            <div style="background:#fff; border:1px solid #C9D9DF; border-radius:2px; padding:15px 16px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; transition:border-color .2s ease, box-shadow .25s ease;" style-hover="border-color:#306176; box-shadow:0 10px 22px rgba(16,36,46,.08);">
+              <div style="width:16px; height:{{ g.bar }}; background:#306176; flex:none; border-radius:1px;"></div>
+              <div style="min-width:0; flex:1;">
+                <div style="font-size:16px; font-weight:700;">Gabarito {{ g.label }}</div>
+                <div style="font-size:13px; color:#6B8390;">{{ g.spec }}</div>
+              </div>
+              <button type="button" onClick="{{ g.download }}" style="background:{{ g.btnBg }}; color:#fff; border:none; padding:11px 16px; border-radius:2px; font-size:14px; font-weight:700; cursor:pointer; transition:background .18s ease, transform .16s ease;" style-hover="transform:translateY(-2px);" style-active="transform:translateY(0) scale(.97);">{{ g.btnLabel }}</button>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:20px; background:#10242E; color:#fff; padding:20px; border-left:4px solid #C8481B; border-radius:2px;">
+          <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:15px; line-height:1.35; letter-spacing:0.01em;">FAREMOS SUA ARTE EXATAMENTE CONFORME ESTÁ NO GABARITO ENVIADO. NÃO FAREMOS QUALQUER MODIFICAÇÃO NO PROJETO.</div>
+          <p style="font-size:14px; color:#C6D4DA; line-height:1.55; margin:12px 0 0;">Não alteramos textos, cores, posições, fontes ou imagens do arquivo recebido — nem corrigimos baixa resolução. Confira tudo antes de enviar: o layout digital que mandamos para aprovação é a reprodução fiel do seu arquivo.</p>
+        </div>
+        <div style="font-size:13px; color:#3A5460; line-height:1.5; margin-top:14px;">Projeto especial? Peça o gabarito sob medida em vendas@banderart.com.br.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" style="background:#10242E; color:#fff; border-top:1px solid #E2DED6;">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+    <div style="display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-end; justify-content:space-between;">
+      <div style="min-width:0; max-width:52ch;">
+        <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Galeria</div>
+        <h2 style="font-size:clamp(28px,3.6vw,40px); letter-spacing:-0.025em; margin:12px 0 0;">Wind Banners que já produzimos</h2>
+        <p style="font-size:17px; line-height:1.55; color:#A9BEC7; margin:12px 0 0;">Fotos reais de produção e montagem, sem imagem de banco. Clique em uma foto para ampliar.</p>
+      </div>
+      <a href="#pedido" style="font-size:15px; font-weight:700; color:#FFB27A; border-bottom:2px solid #FFB27A; padding-bottom:3px; text-decoration:none; transition:color .18s ease, border-color .18s ease;" style-hover="color:#fff; border-color:#fff;">Quero um assim →</a>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin-top:36px;">
+      <div style="grid-column:{{ gal.g1.span }}; height:{{ gal.g1.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g1.ring }}; outline-offset:-2px;" onClick="{{ gal.g1.pick }}">
+        <image-slot id="wb-gal-1" shape="rect" fit="cover" placeholder="Foto 1 — fileira de Wind Banners em evento corporativo"></image-slot>
+      </div>
+      <div style="grid-column:{{ gal.g2.span }}; height:{{ gal.g2.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g2.ring }}; outline-offset:-2px;" onClick="{{ gal.g2.pick }}">
+        <image-slot id="wb-gal-2" shape="rect" fit="cover" placeholder="Foto 2 — frente de loja com base de água"></image-slot>
+      </div>
+      <div style="grid-column:{{ gal.g3.span }}; height:{{ gal.g3.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g3.ring }}; outline-offset:-2px;" onClick="{{ gal.g3.pick }}">
+        <image-slot id="wb-gal-3" shape="rect" fit="cover" placeholder="Foto 3 — ação na praia com espeto de solo"></image-slot>
+      </div>
+      <div style="grid-column:{{ gal.g4.span }}; height:{{ gal.g4.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g4.ring }}; outline-offset:-2px;" onClick="{{ gal.g4.pick }}">
+        <image-slot id="wb-gal-4" shape="rect" fit="cover" placeholder="Foto 4 — detalhe da haste giratória e bainha"></image-slot>
+      </div>
+      <div style="grid-column:{{ gal.g5.span }}; height:{{ gal.g5.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g5.ring }}; outline-offset:-2px;" onClick="{{ gal.g5.pick }}">
+        <image-slot id="wb-gal-5" shape="rect" fit="cover" placeholder="Foto 5 — impressão da bandeira na fábrica"></image-slot>
+      </div>
+      <div style="grid-column:{{ gal.g6.span }}; height:{{ gal.g6.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g6.ring }}; outline-offset:-2px;" onClick="{{ gal.g6.pick }}">
+        <image-slot id="wb-gal-6" shape="rect" fit="cover" placeholder="Foto 6 — kit completo montado (bandeira + haste + base)"></image-slot>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline; justify-content:space-between; margin-top:18px;">
+      <div style="font-size:15px; color:#fff; line-height:1.55; max-width:60ch;">{{ galLegenda }}</div>
+      <div style="font-size:13px; color:#8FA9B4;">{{ galContador }}</div>
+    </div>
+  </div>
+</section>
+
+<section id="pedido" style="background:#F6F3EE; border-top:1px solid #E2DED6;">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+    <div style="max-width:60ch;">
+      <h2 style="font-size:clamp(28px,3.6vw,40px); letter-spacing:-0.025em; margin:0;">Monte seu pedido</h2>
+      <p style="font-size:17px; line-height:1.55; color:#3A5460; margin:12px 0 0;">Escolha tamanho, quantidade e estrutura, anexe a arte (ou peça a criação) e envie. O comercial responde com valor, prazo e frete.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:24px; margin-top:36px; align-items:start;">
+      <div style="background:#fff; border:1px solid #DDE6E9; border-radius:2px; padding:clamp(20px,3vw,34px); min-width:0;">
+        <sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:wbRise .35s ease both;">
+            <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:26px; letter-spacing:-0.02em;">Pedido enviado ✓</div>
+            <p style="font-size:16px; line-height:1.6; color:#3A5460; margin:12px 0 0;">{{ resumo }}</p>
+            <p style="font-size:15px; color:#3A5460; margin:14px 0 0;">Nosso comercial responde em até 1 dia útil com valor, prazo e frete. Se preferir adiantar, chame no WhatsApp 11 4646-3300.</p>
+            <button type="button" onClick="{{ novoPedido }}" style="margin-top:20px; background:#306176; color:#fff; border:none; padding:13px 20px; font-size:15px; font-weight:700; border-radius:2px; cursor:pointer; transition:background .18s ease, transform .16s ease;" style-hover="background:#1F4454; transform:translateY(-2px);" style-active="transform:translateY(0) scale(.97);">Fazer outro pedido</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ editando }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390;">1 — Produto</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:16px;">
+            <label style="display:block;">
+              <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Tamanho da bandeira</span>
+              <select value="{{ size }}" onChange="{{ onSize }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; background:#fff; color:#10242E; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;">
+                <option value="s1">0,70 × 2,00 m — R$ 690</option>
+                <option value="s2">0,90 × 3,00 m — R$ 890</option>
+                <option value="s3">1,20 × 4,00 m — R$ 1.190</option>
+                <option value="s4">1,20 × 5,00 m — R$ 1.390</option>
+                <option value="esp">Projeto especial (descrever)</option>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Quantidade de kits</span>
+              <input type="number" min="1" step="1" value="{{ qty }}" onChange="{{ onQty }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;">
+            </label>
+          </div>
+
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px;">2 — Acessórios de fixação</div>
+          <p style="font-size:14px; line-height:1.55; color:#3A5460; margin:10px 0 0;">Bases e hastes para fixação no solo são fornecidas separadamente da bandeira. Marque o que entra no orçamento — uma unidade por kit.</p>
+          <div style="display:grid; gap:10px; margin-top:14px;">
+            <label style="display:flex; align-items:flex-start; gap:12px; border:1px solid {{ accBorder.haste }}; padding:14px; border-radius:2px; cursor:pointer; background:{{ accRow.haste }}; transition:background .2s ease, border-color .2s ease;" style-hover="border-color:#9DB4BE;">
+              <input type="checkbox" checked="{{ accOn.haste }}" onChange="{{ accToggle.haste }}" style="width:18px; height:18px; margin-top:2px; accent-color:#306176; cursor:pointer; flex:none;">
+              <span style="min-width:0; flex:1;"><span style="display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;"><span style="font-size:15px; font-weight:700;">Haste giratória em alumínio</span><span style="font-size:14px; font-weight:800; color:#306176;">{{ accPreco.haste }}</span></span><span style="display:block; font-size:13px; color:#6B8390; line-height:1.5; margin-top:2px;">Kit de hastes encaixáveis com ponteira giratória e tirante, dimensionado para o tamanho escolhido.</span></span>
+            </label>
+            <label style="display:flex; align-items:flex-start; gap:12px; border:1px solid {{ accBorder.agua }}; padding:14px; border-radius:2px; cursor:pointer; background:{{ accRow.agua }}; transition:background .2s ease, border-color .2s ease;" style-hover="border-color:#9DB4BE;">
+              <input type="checkbox" checked="{{ accOn.agua }}" onChange="{{ accToggle.agua }}" style="width:18px; height:18px; margin-top:2px; accent-color:#306176; cursor:pointer; flex:none;">
+              <span style="min-width:0; flex:1;"><span style="display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;"><span style="font-size:15px; font-weight:700;">Base com peso de água ou areia</span><span style="font-size:14px; font-weight:800; color:#306176;">{{ accPreco.agua }}</span></span><span style="display:block; font-size:13px; color:#6B8390; line-height:1.5; margin-top:2px;">Viaja vazia e ganha peso no local. Recomendada para área aberta e obrigatória nos modelos de 4 e 5 m.</span></span>
+            </label>
+            <label style="display:flex; align-items:flex-start; gap:12px; border:1px solid {{ accBorder.cruz }}; padding:14px; border-radius:2px; cursor:pointer; background:{{ accRow.cruz }}; transition:background .2s ease, border-color .2s ease;" style-hover="border-color:#9DB4BE;">
+              <input type="checkbox" checked="{{ accOn.cruz }}" onChange="{{ accToggle.cruz }}" style="width:18px; height:18px; margin-top:2px; accent-color:#306176; cursor:pointer; flex:none;">
+              <span style="min-width:0; flex:1;"><span style="display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;"><span style="font-size:15px; font-weight:700;">Base cruz de aço</span><span style="font-size:14px; font-weight:800; color:#306176;">{{ accPreco.cruz }}</span></span><span style="display:block; font-size:13px; color:#6B8390; line-height:1.5; margin-top:2px;">Para piso firme e uso interno — desmontável, ocupa pouco espaço no transporte.</span></span>
+            </label>
+            <label style="display:flex; align-items:flex-start; gap:12px; border:1px solid {{ accBorder.espeto }}; padding:14px; border-radius:2px; cursor:pointer; background:{{ accRow.espeto }}; transition:background .2s ease, border-color .2s ease;" style-hover="border-color:#9DB4BE;">
+              <input type="checkbox" checked="{{ accOn.espeto }}" onChange="{{ accToggle.espeto }}" style="width:18px; height:18px; margin-top:2px; accent-color:#306176; cursor:pointer; flex:none;">
+              <span style="min-width:0; flex:1;"><span style="display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;"><span style="font-size:15px; font-weight:700;">Espeto de solo</span><span style="font-size:14px; font-weight:800; color:#306176;">{{ accPreco.espeto }}</span></span><span style="display:block; font-size:13px; color:#6B8390; line-height:1.5; margin-top:2px;">Fixação em grama, terra ou areia. A opção mais leve para montagem rápida.</span></span>
+            </label>
+            <label style="display:flex; align-items:flex-start; gap:12px; border:1px solid {{ accBorder.bolsa }}; padding:14px; border-radius:2px; cursor:pointer; background:{{ accRow.bolsa }}; transition:background .2s ease, border-color .2s ease;" style-hover="border-color:#9DB4BE;">
+              <input type="checkbox" checked="{{ accOn.bolsa }}" onChange="{{ accToggle.bolsa }}" style="width:18px; height:18px; margin-top:2px; accent-color:#306176; cursor:pointer; flex:none;">
+              <span style="min-width:0; flex:1;"><span style="display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;"><span style="font-size:15px; font-weight:700;">Bolsa de transporte</span><span style="font-size:14px; font-weight:800; color:#306176;">{{ accPreco.bolsa }}</span></span><span style="display:block; font-size:13px; color:#6B8390; line-height:1.5; margin-top:2px;">Guarda bandeira, hastes e acessórios em uma peça só.</span></span>
+            </label>
+          </div>
+          <sc-if value="{{ semAcessorio }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:12px; background:#FFF6F1; border:1px solid #F3D3C5; padding:12px 14px; font-size:13px; color:#7E2A0C; line-height:1.5; border-radius:2px; animation:wbRise .25s ease both;">Sem haste e base a bandeira não fica em pé. Marque ao menos a haste giratória ou informe nas observações que já possui a estrutura.</div>
+          </sc-if>
+
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px;">3 — Sua arte</div>
+          <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+            <button type="button" onClick="{{ setTemArte }}" style="flex:1 1 190px; padding:14px 16px; border:2px solid {{ tab.arte }}; background:{{ tabBg.arte }}; color:#10242E; font-size:15px; font-weight:700; border-radius:2px; cursor:pointer; text-align:left; transition:border-color .2s ease, background .2s ease, transform .16s ease;" style-hover="transform:translateY(-2px);" style-active="transform:translateY(0) scale(.98);">Já tenho a arte pronta</button>
+            <button type="button" onClick="{{ setSemArte }}" style="flex:1 1 190px; padding:14px 16px; border:2px solid {{ tab.servico }}; background:{{ tabBg.servico }}; color:#10242E; font-size:15px; font-weight:700; border-radius:2px; cursor:pointer; text-align:left; transition:border-color .2s ease, background .2s ease, transform .16s ease;" style-hover="transform:translateY(-2px);" style-active="transform:translateY(0) scale(.98);">Quero que a Banderart crie</button>
+          </div>
+
+          <sc-if value="{{ temArte }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:16px; animation:wbRise .3s ease both;">
+              <label onDragOver="{{ onDragOver }}" onDragLeave="{{ onDragLeave }}" onDrop="{{ onDrop }}" style="display:block; border:2px dashed {{ dropBorder }}; background:{{ dropBg }}; border-radius:2px; padding:30px 24px; text-align:center; cursor:pointer; transform:{{ dropScale }}; transition:border-color .2s ease, background .2s ease, transform .2s ease;" style-hover="border-color:#306176; background:#F1F6F8;">
+                <input type="file" onChange="{{ onFile }}" accept=".pdf,.ai,.eps,.cdr,.svg,.psd,.tif,.tiff,.jpg,.jpeg,.png,.zip,.rar" style="display:none;">
+                <div style="font-size:17px; font-weight:700;">Arraste o arquivo da arte aqui</div>
+                <div style="font-size:14px; color:#3A5460; margin-top:6px;">ou clique para escolher — PDF, AI, EPS, CDR, PSD, TIFF, JPG ou ZIP até 200 MB, montado no gabarito</div>
+              </label>
+              <sc-if value="{{ hasFile }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; gap:14px; align-items:center; margin-top:14px; border:1px solid #C9D9DF; background:#F6F9FA; padding:14px; border-radius:2px; animation:wbRise .3s ease both;">
+                  <div style="width:52px; height:52px; background:#E7EEF1; border-radius:2px; display:flex; align-items:center; justify-content:center; flex:none; font-size:11px; font-weight:800; color:#306176;">{{ fileExt }}</div>
+                  <div style="min-width:0; flex:1;">
+                    <div style="font-size:15px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ fileName }}</div>
+                    <div style="font-size:13px; color:#3A5460;">{{ fileSize }} — anexado ao pedido</div>
+                  </div>
+                  <button type="button" onClick="{{ clearFile }}" style="background:none; border:1px solid #C9D9DF; color:#3A5460; font-size:13px; font-weight:700; padding:8px 12px; border-radius:2px; cursor:pointer; transition:background .18s ease, color .18s ease;" style-hover="background:#FCE9E0; color:#A93A13;">Remover</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ fileWarn }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:12px; background:#FCE9E0; border-left:3px solid #C8481B; padding:12px 14px; font-size:14px; color:#7E2A0C; line-height:1.5; animation:wbRise .3s ease both;">{{ fileWarnText }}</div>
+              </sc-if>
+              <label style="display:block; margin-top:16px;">
+                <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Link do arquivo (WeTransfer, Drive) — opcional</span>
+                <input type="url" placeholder="https://" value="{{ link }}" onChange="{{ onLink }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;">
+              </label>
+              <div style="margin-top:14px; font-size:13px; line-height:1.55; color:#7E2A0C; background:#FFF6F1; border:1px solid #F3D3C5; padding:12px 14px; border-radius:2px;"><strong>Atenção:</strong> imprimimos exatamente o que está no arquivo enviado, sem qualquer modificação no projeto.</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ semArte }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:16px; background:#FFF6F1; border:1px solid #F3D3C5; border-radius:2px; padding:20px; animation:wbRise .3s ease both;">
+              <div style="font-size:15px; font-weight:700;">Serviço de criação de arte adicionado ao pedido</div>
+              <p style="font-size:14px; color:#5A3222; line-height:1.55; margin:8px 0 16px;">Conte o que a peça precisa comunicar e anexe o que você já tem (logo, foto, referência). O valor entra no orçamento conforme a complexidade.</p>
+              <label style="display:block;">
+                <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Briefing da arte</span>
+                <textarea rows="4" placeholder="Ex.: promoção de verão, logo azul, foto de produto, texto 'Aqui tem açaí' bem grande" value="{{ briefing }}" onChange="{{ onBriefing }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; resize:vertical; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;"></textarea>
+              </label>
+              <label onDragOver="{{ onDragOver }}" onDragLeave="{{ onDragLeave }}" onDrop="{{ onDrop }}" style="display:block; margin-top:14px; border:2px dashed {{ dropBorder }}; background:#fff; border-radius:2px; padding:20px; text-align:center; cursor:pointer; transition:border-color .2s ease, background .2s ease;" style-hover="border-color:#C8481B; background:#FFFBF8;">
+                <input type="file" onChange="{{ onFile }}" accept=".pdf,.ai,.eps,.cdr,.svg,.psd,.tif,.tiff,.jpg,.jpeg,.png,.zip,.rar" style="display:none;">
+                <div style="font-size:15px; font-weight:700;">Anexar logo ou referência (opcional)</div>
+                <div style="font-size:13px; color:#3A5460; margin-top:4px;">clique ou arraste o arquivo</div>
+              </label>
+              <sc-if value="{{ hasFile }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; gap:12px; align-items:center; margin-top:12px; background:#fff; border:1px solid #C9D9DF; padding:12px; border-radius:2px; animation:wbRise .3s ease both;">
+                  <div style="min-width:0; flex:1; font-size:14px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ fileName }}</div>
+                  <button type="button" onClick="{{ clearFile }}" style="background:none; border:1px solid #C9D9DF; color:#3A5460; font-size:13px; font-weight:700; padding:7px 11px; border-radius:2px; cursor:pointer; transition:background .18s ease, color .18s ease;" style-hover="background:#FCE9E0; color:#A93A13;">Remover</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px;">4 — Seus dados</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:14px; margin-top:16px;">
+            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Nome *</span><input value="{{ f.nome }}" onChange="{{ on.nome }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.nome }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Empresa</span><input value="{{ f.empresa }}" onChange="{{ on.empresa }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">E-mail *</span><input type="email" value="{{ f.email }}" onChange="{{ on.email }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.email }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">WhatsApp *</span><input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="(11) 90000-0000" style="width:100%; padding:13px 12px; border:1px solid {{ err.tel }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            
+          </div>
+          <label style="display:block; margin-top:14px;">
+            <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Observações</span>
+            <textarea rows="3" placeholder="Prazo, local de entrega, leitura correta nos dois lados, Pantones da marca…" value="{{ f.obs }}" onChange="{{ on.obs }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; resize:vertical;"></textarea>
+          </label>
+
+          <button type="button" onClick="{{ enviar }}" style="margin-top:24px; width:100%; background:#C8481B; color:#fff; border:none; padding:17px 20px; font-size:17px; font-weight:700; border-radius:2px; cursor:pointer; transition:background .18s ease, transform .16s ease, box-shadow .2s ease;" style-hover="background:#A93A13; transform:translateY(-2px); box-shadow:0 14px 28px rgba(200,72,27,.32);" style-active="transform:translateY(0) scale(.99);">Enviar pedido</button>
+          <sc-if value="{{ erroGeral }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:12px; font-size:14px; color:#A93A13; font-weight:600; animation:wbRise .25s ease both;">Preencha nome, e-mail e WhatsApp para enviarmos o orçamento.</div>
+          </sc-if>
+          <p style="font-size:13px; color:#6B8390; margin:12px 0 0;">Enviar o pedido não gera compromisso de compra. Produção só após aprovação do layout digital.</p>
+        </div>
+        </sc-if>
+      </div><div style="min-width:0; position:sticky; top:96px;">
+        <div style="background:#10242E; color:#fff; border-radius:2px; padding:clamp(20px,3vw,28px);">
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Resumo</div>
+          <h3 style="font-size:21px; margin:10px 0 0; letter-spacing:-0.01em;">Seu pedido</h3>
+
+          <div style="margin-top:18px; display:grid; gap:8px; font-size:14px; color:#C6D4DA;">
+            <div style="display:flex; justify-content:space-between; gap:12px;"><span>Tamanho</span><strong style="color:#fff; text-align:right;">{{ sizeLabel }}</strong></div>
+            <div style="display:flex; justify-content:space-between; gap:12px;"><span>Quantidade</span><strong style="color:#fff;">{{ qty }}</strong></div>
+            <div style="display:flex; justify-content:space-between; gap:12px;"><span>Acessórios</span><strong style="color:#fff; text-align:right;">{{ estruturaResumo }}</strong></div>
+            <div style="display:flex; justify-content:space-between; gap:12px;"><span>Arte</span><strong style="color:#fff; text-align:right;">{{ arteResumo }}</strong></div>
+          </div>
+
+          <div style="margin-top:18px; background:#17323D; border:1px solid #23414E; border-radius:2px; padding:18px;">
+            <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Valores</div>
+            <div style="display:grid; gap:9px; margin-top:12px; font-size:14px; color:#C6D4DA;">
+              <div style="display:flex; justify-content:space-between; gap:12px;"><span>{{ linhaBandeira }}</span><strong style="color:#fff; white-space:nowrap;">{{ totalBandeira }}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:12px;"><span>Acessórios de fixação</span><strong style="color:#fff; white-space:nowrap;">{{ totalAcessorios }}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:12px;"><span>{{ linhaArte }}</span><strong style="color:#fff; white-space:nowrap;">{{ totalArte }}</strong></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; border-top:1px solid #23414E; margin-top:14px; padding-top:14px;">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#FFB27A;">Total estimado</span>
+              <strong style="font-family:'Archivo Black',Archivo,sans-serif; font-size:26px; color:#fff; white-space:nowrap;">{{ totalGeral }}</strong>
+            </div>
+            <p style="font-size:12px; color:#8FA9B4; line-height:1.5; margin:12px 0 0;">Valores de tabela para produção padrão, sem frete e sem impostos destacados. O comercial confirma o valor final no orçamento.</p>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<footer style="background:#10242E; color:#A9BEC7; border-top:4px solid #C8481B;">
+  <div style="max-width:1200px; margin:0 auto; padding:44px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:28px;">
+    <div>
+      <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#fff; font-size:20px;">Banderart</div>
+      <p style="font-size:14px; line-height:1.6; margin:10px 0 0;">Fábrica de bandeiras, mastros e Wind Banner desde 1998. Produção própria em Itaquaquecetuba / SP.</p>
+    </div>
+    <div style="font-size:14px; line-height:1.9;">
+      <div style="color:#fff; font-weight:700; margin-bottom:6px;">Vendas</div>
+      11 4646-3300<br>vendas@banderart.com.br<br>Seg a sex, 8h às 17h30
+    </div>
+    <div style="font-size:14px; line-height:1.9;">
+      <div style="color:#fff; font-weight:700; margin-bottom:6px;">Nesta página</div>
+      <a href="#tamanhos" style="color:#A9BEC7;">Tamanhos</a><br>
+      <a href="#gabaritos" style="color:#A9BEC7;">Gabaritos</a><br>
+      <a href="#galeria" style="color:#A9BEC7;">Galeria</a><br>
+      <a href="#pedido" style="color:#A9BEC7;">Montar pedido</a>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;corDestaque&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#306176&quot;,&quot;options&quot;:[&quot;#C8481B&quot;,&quot;#306176&quot;,&quot;#0F6B4F&quot;,&quot;#B0122B&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identidade&quot;},&quot;ritmo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Completo&quot;,&quot;Objetivo&quot;],&quot;default&quot;:&quot;Completo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Página&quot;}}">
+class Component extends DCLogic {
+  state = {
+    size: 's2', qty: 1,
+    acc: { haste: true, agua: true, cruz: false, espeto: false, bolsa: false },
+    modo: 'tenho',
+    file: null, warn: '', link: '', briefing: '',
+    dragging: false,
+    baixado: '',
+    f: { nome: '', empresa: '', email: '', tel: '', data: '', obs: '' },
+    touched: false, enviado: false,
+    galAtiva: 'g1',
+  };
+
+  sizes = {
+    s1: { label: '0,70 × 2,00 m', use: 'balcões, recepções e ambientes internos', w: 0.7, h: 2, bar: '30px',
+      area: '0,70 × 2,00 m + 5 cm de sangria', base: 'haste giratória + base cruz ou espeto (à parte)', preco: 690 },
+    s2: { label: '0,90 × 3,00 m', use: 'o mais pedido: feiras, lojas e eventos', w: 0.9, h: 3, bar: '44px',
+      area: '0,90 × 3,00 m + 5 cm de sangria', base: 'haste giratória + base de água/areia (à parte)', preco: 890 },
+    s3: { label: '1,20 × 4,00 m', use: 'estacionamentos, praias e vias movimentadas', w: 1.2, h: 4, bar: '58px',
+      area: '1,20 × 4,00 m + 5 cm de sangria', base: 'haste giratória + base de água/areia (à parte)', preco: 1190 },
+    s4: { label: '1,20 × 5,00 m', use: 'máxima visibilidade em grandes áreas', w: 1.2, h: 5, bar: '72px',
+      area: '1,20 × 5,00 m + 5 cm de sangria', base: 'haste reforçada + base de água/areia (à parte)', preco: 1390 },
+    esp: { label: 'Projeto especial', use: 'descreva nas observações', w: 1, h: 3.4, bar: '50px',
+      area: 'sob medida — pedimos o gabarito específico', base: 'definida pelo comercial', preco: 0 },
+  };
+
+  precosAcc = { haste: 390, agua: 290, cruz: 240, espeto: 90, bolsa: 120 };
+  precoArte = 390;
+
+  brl(n) {
+    return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  ac() { return this.props.corDestaque || '#C8481B'; }
+
+  set(k, v) { this.setState({ [k]: v }); }
+  field(k) { return e => this.setState(s => ({ f: Object.assign({}, s.f, { [k]: e.target.value }) })); }
+
+  takeFile(file) {
+    if (!file) return;
+    const mb = file.size / 1048576;
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    let warn = '';
+    if (mb > 200) warn = 'Arquivo acima de 200 MB. Envie por WeTransfer ou Drive e cole o link no campo abaixo.';
+    else if (['png', 'jpg', 'jpeg'].indexOf(ext) >= 0 && mb < 1.2) warn = 'Esse arquivo parece leve para impressão em grande formato. Se for imagem de site, o resultado sai borrado — prefira o vetor (PDF, AI, EPS ou CDR) ou uma imagem em 150 dpi no tamanho final.';
+    this.setState({ file: { name: file.name, size: mb, ext: ext.toUpperCase() }, warn: warn, dragging: false });
+  }
+
+  validos() {
+    const f = this.state.f;
+    return { nome: !!f.nome.trim(), email: /.+@.+\..+/.test(f.email), tel: f.tel.replace(/\D/g, '').length >= 10 };
+  }
+
+  renderVals() {
+    const s = this.state, ac = this.ac(), sz = this.sizes[s.size] || this.sizes.s2;
+    const v = this.validos();
+    const errColor = k => (s.touched && !v[k] ? '#C8481B' : '#C9D9DF');
+    const mk = (k) => ({
+      sel: s.size === k,
+    });
+
+    const sizeFill = {}, sizeBorder = {}, sizeText = {}, sizeSelect = {}, dim = {};
+    ['s1', 's2', 's3', 's4'].forEach(k => {
+      const on = s.size === k;
+      sizeFill[k] = on ? ac : '#4E7C8E';
+      sizeBorder[k] = on ? '#FFB27A' : 'transparent';
+      sizeText[k] = on ? '#FFFFFF' : '#7E99A4';
+      dim[k] = on ? 1 : 0.3;
+      sizeSelect[k] = () => this.setState({ size: k });
+    });
+
+    const accOn = s.acc, accToggle = {}, accBorder = {}, accFill = {}, accRow = {}, accCta = {}, accPreco = {};
+    ['haste', 'agua', 'cruz', 'espeto', 'bolsa'].forEach(k => {
+      accToggle[k] = () => this.setState(st => ({ acc: Object.assign({}, st.acc, { [k]: !st.acc[k] }) }));
+      accBorder[k] = accOn[k] ? '#306176' : '#DDE6E9';
+      accFill[k] = accOn[k] ? '#306176' : 'transparent';
+      accRow[k] = accOn[k] ? '#F1F6F8' : '#fff';
+      accCta[k] = accOn[k] ? 'Adicionado ao pedido' : 'Adicionar ao pedido';
+      accPreco[k] = this.brl(this.precosAcc[k]);
+    });
+
+
+    const gabaritos = ['s1', 's2', 's3', 's4'].map(k => {
+      const g = this.sizes[k];
+      const on = s.baixado === k;
+      return {
+        label: g.label, bar: g.bar,
+        spec: 'PDF + AI · escala 1:10 · sangria 5 cm · bainha 10 cm',
+        btnBg: on ? '#306176' : ac,
+        btnLabel: on ? 'Baixado ✓' : 'Baixar',
+        download: () => this.setState({ baixado: k, size: k }),
+      };
+    });
+
+
+    const galInfo = {
+      g1: 'Fileira de Wind Banners 3 m na entrada de um evento corporativo.',
+      g2: 'Wind Banner 4 m instalado na frente de loja, com base de água.',
+      g3: 'Modelo 5 m em ação de verão na praia — tecido Duralon® vazado.',
+      g4: 'Detalhe da haste giratória e da bainha reforçada.',
+      g5: 'Impressão direta no tecido, na nossa fábrica em Itaquaquecetuba.',
+      g6: 'Kit completo montado: bandeira, haste giratória e base.',
+    };
+    const galKeys = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'];
+    const galLegendas = galInfo;
+    const gal = {};
+    galKeys.forEach(k => {
+      const on = s.galAtiva === k;
+      gal[k] = {
+        span: on ? 'span 2' : 'span 1',
+        h: on ? 'clamp(260px,32vw,420px)' : 'clamp(130px,16vw,205px)',
+        ring: on ? '3px solid #FFB27A' : '1px solid #23414E',
+        pick: () => this.setState({ galAtiva: k }),
+      };
+    });
+    const accNomes = { haste: 'haste giratória', agua: 'base de água/areia', cruz: 'base cruz de aço', espeto: 'espeto de solo', bolsa: 'bolsa de transporte' };
+    const estrutura = Object.keys(accNomes).filter(k => s.acc[k]).map(k => accNomes[k]);
+    const qtd = Math.max(1, s.qty || 1);
+    const semPreco = !sz.preco;
+    const vBandeira = sz.preco * qtd;
+    const vAcessorios = Object.keys(this.precosAcc).filter(k => s.acc[k]).reduce((t, k) => t + this.precosAcc[k] * qtd, 0);
+    const vArte = s.modo === 'servico' ? this.precoArte : 0;
+    const vTotal = vBandeira + vAcessorios + vArte;
+
+    const arteResumo = s.modo === 'tenho'
+      ? (s.file ? 'arquivo anexado' : (s.link ? 'link enviado' : 'envio próprio'))
+      : 'criação Banderart';
+
+    return {
+      completo: (this.props.ritmo || 'Completo') === 'Completo',
+      size: s.size, qty: s.qty,
+      sizeLabel: sz.label, sizeUse: sz.use, sizeArea: sz.area, sizeBase: sz.base,
+      sizePreco: semPreco ? 'sob consulta' : this.brl(sz.preco),
+      linhaBandeira: 'Bandeira ' + sz.label + ' × ' + qtd,
+      totalBandeira: semPreco ? 'sob consulta' : this.brl(vBandeira),
+      totalAcessorios: vAcessorios ? this.brl(vAcessorios) : '—',
+      linhaArte: s.modo === 'servico' ? 'Criação de arte Banderart' : 'Arte enviada por você',
+      totalArte: vArte ? this.brl(vArte) : 'incluso',
+      totalGeral: semPreco ? 'sob consulta' : this.brl(vTotal),
+      sizeFill, sizeBorder, sizeText, sizeSelect, dim,
+      gabaritoDoTamanho: () => this.setState({ baixado: s.size }),
+      accOn, accToggle, accBorder, accFill, accRow, accCta, accPreco,
+      gabaritos,
+      onSize: e => this.setState({ size: e.target.value }),
+      onQty: e => this.setState({ qty: Math.max(1, parseInt(e.target.value || '1', 10)) }),
+      temArte: s.modo === 'tenho', semArte: s.modo === 'servico',
+      setTemArte: () => this.setState({ modo: 'tenho' }),
+      setSemArte: () => this.setState({ modo: 'servico' }),
+      tab: { arte: s.modo === 'tenho' ? '#306176' : '#DDE6E9', servico: s.modo === 'servico' ? ac : '#DDE6E9' },
+      tabBg: { arte: s.modo === 'tenho' ? '#F1F6F8' : '#fff', servico: s.modo === 'servico' ? '#FFF6F1' : '#fff' },
+      dropBorder: s.dragging ? ac : '#C9D9DF',
+      dropBg: s.dragging ? '#FFF6F1' : '#F8FAFB',
+      dropScale: s.dragging ? 'scale(1.01)' : 'none',
+      onDragOver: e => { e.preventDefault(); if (!s.dragging) this.setState({ dragging: true }); },
+      onDragLeave: () => this.setState({ dragging: false }),
+      onDrop: e => { e.preventDefault(); this.takeFile(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]); },
+      onFile: e => this.takeFile(e.target.files && e.target.files[0]),
+      hasFile: !!s.file,
+      fileName: s.file ? s.file.name : '',
+      fileExt: s.file ? s.file.ext : '',
+      fileSize: s.file ? (s.file.size < 1 ? Math.round(s.file.size * 1024) + ' KB' : s.file.size.toFixed(1) + ' MB') : '',
+      clearFile: () => this.setState({ file: null, warn: '' }),
+      fileWarn: !!s.warn, fileWarnText: s.warn,
+      link: s.link, onLink: e => this.setState({ link: e.target.value }),
+      briefing: s.briefing, onBriefing: e => this.setState({ briefing: e.target.value }),
+      f: s.f,
+      on: { nome: this.field('nome'), empresa: this.field('empresa'), email: this.field('email'), tel: this.field('tel'), data: this.field('data'), obs: this.field('obs') },
+      err: { nome: errColor('nome'), email: errColor('email'), tel: errColor('tel') },
+      erroGeral: s.touched && !(v.nome && v.email && v.tel) && !s.enviado,
+      enviar: () => {
+        const ok = v.nome && v.email && v.tel;
+        this.setState({ touched: true, enviado: ok });
+      },
+      enviado: s.enviado, editando: !s.enviado,
+      novoPedido: () => this.setState({ enviado: false, touched: false }),
+      resumo: qtd + ' kit(s) ' + sz.label + (estrutura.length ? ' com ' + estrutura.join(', ') : ' sem acessórios de fixação') + ' — arte: ' + arteResumo + '. Total estimado: ' + (semPreco ? 'sob consulta' : this.brl(vTotal)) + '.',
+      estruturaResumo: estrutura.length ? estrutura.join(' + ') : 'nenhum acessório',
+      semAcessorio: estrutura.length === 0,
+      arteResumo,
+      gal: gal,
+      galLegenda: galLegendas[s.galAtiva],
+      galContador: (galKeys.indexOf(s.galAtiva) + 1) + ' de ' + galKeys.length,
+    };
+  }
+}
+</script>
+</body>
+</html>
