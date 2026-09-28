@@ -554,23 +554,13 @@ document.addEventListener('click', function (e) {
             </div>
           </sc-if>
 
-          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px; margin-bottom:16px;">4 — Seus dados</div>
-          <div class="row g-3">
-            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Nome *</span><input value="{{ f.nome }}" onChange="{{ on.nome }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.nome }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Empresa</span><input value="{{ f.empresa }}" onChange="{{ on.empresa }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">E-mail *</span><input type="email" value="{{ f.email }}" onChange="{{ on.email }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.email }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">WhatsApp *</span><input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="(11) 90000-0000" style="width:100%; padding:13px 12px; border:1px solid {{ err.tel }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            
-          </div>
-          <label style="display:block; margin-top:14px;">
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px; margin-bottom:16px;">4 — Observações</div>
+                    <label style="display:block;">
             <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Observações</span>
             <textarea rows="3" placeholder="Prazo, local de entrega, leitura correta nos dois lados, Pantones da marca…" value="{{ f.obs }}" onChange="{{ on.obs }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; resize:vertical;"></textarea>
           </label>
 
-          <button type="button" onClick="{{ enviar }}" style="margin-top:24px; width:100%; background:#C8481B; color:#fff; border:none; padding:17px 20px; font-size:17px; font-weight:700; border-radius:2px; cursor:pointer; transition:background .18s ease, transform .16s ease, box-shadow .2s ease;" style-hover="background:#A93A13; transform:translateY(-2px); box-shadow:0 14px 28px rgba(200,72,27,.32);" style-active="transform:translateY(0) scale(.99);">Enviar pedido</button>
-          <sc-if value="{{ erroGeral }}" hint-placeholder-val="{{ false }}">
-            <div style="margin-top:12px; font-size:14px; color:#A93A13; font-weight:600; animation:wbRise .25s ease both;">Preencha nome, e-mail e WhatsApp para enviarmos o orçamento.</div>
-          </sc-if>
+          <button type="button" onClick="{{ enviar }}" style="margin-top:24px; width:100%; background:#C8481B; color:#fff; border:none; padding:17px 20px; font-size:17px; font-weight:700; border-radius:2px; cursor:pointer; transition:background .18s ease, transform .16s ease, box-shadow .2s ease;" style-hover="background:#A93A13; transform:translateY(-2px); box-shadow:0 14px 28px rgba(200,72,27,.32);" style-active="transform:translateY(0) scale(.99);">Confirmar Compra</button>
           <p style="font-size:13px; color:#6B8390; margin:12px 0 0;">Enviar o pedido não gera compromisso de compra. Produção só após aprovação do layout digital.</p>
         </div>
         </sc-if>
@@ -639,8 +629,8 @@ class Component extends DCLogic {
     file: null, warn: '', link: '', briefing: '',
     dragging: false,
     baixado: '',
-    f: { nome: '', empresa: '', email: '', tel: '', data: '', obs: '' },
-    touched: false, enviado: false,
+    f: { obs: '' },
+    enviado: false,
     galAtiva: 'g1',
   };
 
@@ -679,15 +669,8 @@ class Component extends DCLogic {
     this.setState({ file: { name: file.name, size: mb, ext: ext.toUpperCase() }, warn: warn, dragging: false });
   }
 
-  validos() {
-    const f = this.state.f;
-    return { nome: !!f.nome.trim(), email: /.+@.+\..+/.test(f.email), tel: f.tel.replace(/\D/g, '').length >= 10 };
-  }
-
   renderVals() {
     const s = this.state, ac = this.ac(), sz = this.sizes[s.size] || this.sizes.s2;
-    const v = this.validos();
-    const errColor = k => (s.touched && !v[k] ? '#C8481B' : '#C9D9DF');
     const mk = (k) => ({
       sel: s.size === k,
     });
@@ -797,15 +780,10 @@ class Component extends DCLogic {
       link: s.link, onLink: e => this.setState({ link: e.target.value }),
       briefing: s.briefing, onBriefing: e => this.setState({ briefing: e.target.value }),
       f: s.f,
-      on: { nome: this.field('nome'), empresa: this.field('empresa'), email: this.field('email'), tel: this.field('tel'), data: this.field('data'), obs: this.field('obs') },
-      err: { nome: errColor('nome'), email: errColor('email'), tel: errColor('tel') },
-      erroGeral: s.touched && !(v.nome && v.email && v.tel) && !s.enviado,
-      enviar: () => {
-        const ok = v.nome && v.email && v.tel;
-        this.setState({ touched: true, enviado: ok });
-      },
+      on: { obs: this.field('obs') },
+      enviar: () => this.setState({ enviado: true }),
       enviado: s.enviado, editando: !s.enviado,
-      novoPedido: () => this.setState({ enviado: false, touched: false }),
+      novoPedido: () => this.setState({ enviado: false }),
       resumo: qtd + ' kit(s) ' + sz.label + (estrutura.length ? ' com ' + estrutura.join(', ') : ' sem acessórios de fixação') + ' — arte: ' + arteResumo + '. Total estimado: ' + (semPreco ? 'sob consulta' : this.brl(vTotal)) + '.',
       estruturaResumo: estrutura.length ? estrutura.join(' + ') : 'nenhum acessório',
       semAcessorio: estrutura.length === 0,
