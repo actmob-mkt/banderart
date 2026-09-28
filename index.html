@@ -25,7 +25,6 @@
   @keyframes wbPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(200,72,27,.35); } 50% { box-shadow: 0 0 0 10px rgba(200,72,27,0); } }
   @keyframes wbRise { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }
 </style>
-<script src="./image-slot.js"></script>
 </helmet>
 
 <div style="width:100%; background:#10242E; color:#C6D4DA; font-size:13px; padding:9px 20px; display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:center; align-items:center;">
@@ -82,7 +81,7 @@
 
 <section style="background:#10242E; border-bottom:1px solid #E2DED6;">
   <div style="position:relative; width:100%; height:clamp(300px, 38vw, 480px); overflow:hidden;">
-    <image-slot id="wb-pratica" shape="rect" fit="cover" placeholder="Solte aqui a foto panorâmica dos Wind Banners montados em evento (JPG horizontal, mín. 2000 px de largura)"></image-slot>
+    <img src="assets/MONTAGEM-WINDBANNER-1-300x200.jpg" alt="Wind Banners de vários modelos montados em fileira na calçada da praia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
     <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(16,36,46,.88) 0%, rgba(16,36,46,.55) 42%, rgba(16,36,46,0) 70%);"><div style="position: absolute; left: 300px; top: 50px; width: min(560px, 76%); padding: clamp(24px,4vw,52px); display: flex; flex-direction: column; justify-content: center; gap: 14px; pointer-events: none">
       <span style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Wind Banner na prática</span>
       
@@ -307,22 +306,22 @@
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin-top:36px;">
       <div style="grid-column:{{ gal.g1.span }}; height:{{ gal.g1.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g1.ring }}; outline-offset:-2px;" onClick="{{ gal.g1.pick }}">
-        <image-slot id="wb-gal-1" shape="rect" fit="cover" placeholder="Foto 1 — fileira de Wind Banners em evento corporativo"></image-slot>
+        <img src="assets/Windbanner-2-1-300x300.jpg" alt="Wind Banner com base de água instalado em área externa" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="grid-column:{{ gal.g2.span }}; height:{{ gal.g2.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g2.ring }}; outline-offset:-2px;" onClick="{{ gal.g2.pick }}">
-        <image-slot id="wb-gal-2" shape="rect" fit="cover" placeholder="Foto 2 — frente de loja com base de água"></image-slot>
+        <img src="assets/Windbanner-300x300.jpg" alt="Wind Banner modelo gota em área externa, evento Dia do Desafio" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="grid-column:{{ gal.g3.span }}; height:{{ gal.g3.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g3.ring }}; outline-offset:-2px;" onClick="{{ gal.g3.pick }}">
-        <image-slot id="wb-gal-3" shape="rect" fit="cover" placeholder="Foto 3 — ação na praia com espeto de solo"></image-slot>
+        <img src="assets/IVECO-1-300x300.jpg" alt="Wind Banner Iveco com base de água" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="grid-column:{{ gal.g4.span }}; height:{{ gal.g4.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g4.ring }}; outline-offset:-2px;" onClick="{{ gal.g4.pick }}">
-        <image-slot id="wb-gal-4" shape="rect" fit="cover" placeholder="Foto 4 — detalhe da haste giratória e bainha"></image-slot>
+        <img src="assets/WINDBANNER-TRIDIUM-300x300.jpg" alt="Par de Wind Banners Tridium, modelo tubarão 0,70 x 2,00 m" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="grid-column:{{ gal.g5.span }}; height:{{ gal.g5.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g5.ring }}; outline-offset:-2px;" onClick="{{ gal.g5.pick }}">
-        <image-slot id="wb-gal-5" shape="rect" fit="cover" placeholder="Foto 5 — impressão da bandeira na fábrica"></image-slot>
+        <img src="assets/SCANIA-300x300.jpg" alt="Wind Banner Scania modelo gota, frente e verso" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="grid-column:{{ gal.g6.span }}; height:{{ gal.g6.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g6.ring }}; outline-offset:-2px;" onClick="{{ gal.g6.pick }}">
-        <image-slot id="wb-gal-6" shape="rect" fit="cover" placeholder="Foto 6 — kit completo montado (bandeira + haste + base)"></image-slot>
+        <img src="assets/NEW-BALANCE-1-227x300.jpg" alt="Wind Banner New Balance com base de água" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
     </div>
 
@@ -626,12 +625,12 @@ class Component extends DCLogic {
 
 
     const galInfo = {
-      g1: 'Fileira de Wind Banners 3 m na entrada de um evento corporativo.',
-      g2: 'Wind Banner 4 m instalado na frente de loja, com base de água.',
-      g3: 'Modelo 5 m em ação de verão na praia — tecido Duralon® vazado.',
-      g4: 'Detalhe da haste giratória e da bainha reforçada.',
-      g5: 'Impressão direta no tecido, na nossa fábrica em Itaquaquecetuba.',
-      g6: 'Kit completo montado: bandeira, haste giratória e base.',
+      g1: 'Wind Banner com base de água instalado em área externa.',
+      g2: 'Modelo gota em área externa, produzido para o evento Dia do Desafio.',
+      g3: 'Wind Banner Iveco com arte em degradê e base de água.',
+      g4: 'Par de Wind Banners Tridium, modelo tubarão 0,70 × 2,00 m.',
+      g5: 'Wind Banner Scania modelo gota — frente e verso.',
+      g6: 'Wind Banner New Balance com base de água.',
     };
     const galKeys = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'];
     const galLegendas = galInfo;
