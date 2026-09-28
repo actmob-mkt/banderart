@@ -3,7 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="./support.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+<script>
+/* Menu mobile: ao tocar num link com o menu aberto, espera o menu terminar de fechar e só então rola até a seção
+   (senão a rolagem é calculada com o menu aberto e passa do ponto). Delegação no document porque o menu é renderizado depois. */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('header a[href^="#"]');
+  var menu = document.getElementById('wbMenu');
+  if (!a || !menu || !window.bootstrap || !menu.classList.contains('show')) return;
+  var href = a.getAttribute('href');
+  var target = document.querySelector(href);
+  if (!target) return;
+  e.preventDefault();
+  menu.addEventListener('hidden.bs.collapse', function () {
+    target.scrollIntoView();
+    history.pushState(null, '', href);
+  }, { once: true });
+  window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
+});
+</script>
 </head>
 <body>
 <x-dc>
@@ -24,34 +44,108 @@
   @keyframes wbSway { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
   @keyframes wbPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(200,72,27,.35); } 50% { box-shadow: 0 0 0 10px rgba(200,72,27,0); } }
   @keyframes wbRise { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  /* ===== Bootstrap 5: compatibilidade (mantém o visual original) ===== */
+  :root { --bs-body-line-height: normal; }
+  h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: normal; }
+  html { scroll-padding-top: 76px; }
+  /* O support.js fixa a altura do host em 100% da tela; numa página longa isso limitava o header sticky à primeira tela de rolagem */
+  html, body, #dc-root, #dc-root > .sc-host { height: auto !important; }
+
+  /* ===== Espaçamento de seções (mobile primeiro) ===== */
+  .wb-px { padding-left: 16px; padding-right: 16px; }
+  .wb-sec { padding-top: 48px; padding-bottom: 48px; }
+  .wb-hero { padding-top: 32px; padding-bottom: 48px; }
+  .wb-badge { left: 12px; }
+
+  /* ===== Menu mobile ===== */
+  #wbMenu.show, #wbMenu.collapsing { border-top: 1px solid #E2DED6; margin-top: 10px; }
+  .navbar-toggler { border-color: #C9D9DF; }
+
+  /* ===== Banner panorâmico ===== */
+  .wb-pratica { position: relative; overflow: hidden; }
+  .wb-pratica-img { display: block; width: 100%; height: 220px; object-fit: cover; }
+  .wb-pratica-shade { display: none; }
+  .wb-pratica-text { display: flex; flex-direction: column; gap: 14px; padding: 24px 16px 32px; }
+
+  /* ===== Gráfico de tamanhos ===== */
+  .wb-chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .wb-chart { min-width: 670px; }
+  .wb-flags { gap: 52px; }
+
+  /* ===== Cards "Por que o Wind Banner..." ===== */
+  .wb-benefits { grid-template-columns: minmax(0, 1fr); }
+
+  /* ===== Galeria ===== */
+  .wb-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+  /* iOS dá zoom automático em campos com fonte menor que 16px */
+  @media (max-width: 767.98px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), select, textarea { font-size: 16px !important; }
+  }
+
+  @media (min-width: 576px) {
+    .wb-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 768px) {
+    .wb-px { padding-left: 20px; padding-right: 20px; }
+    .wb-gx { --bs-gutter-x: 2.5rem; }
+    .wb-sec { padding-top: 64px; padding-bottom: 64px; }
+    .wb-hero { padding-top: 56px; padding-bottom: 64px; }
+    .wb-badge { left: -12px; }
+    .wb-pratica { height: clamp(300px, 38vw, 480px); }
+    .wb-pratica-img { position: absolute; inset: 0; height: 100%; }
+    .wb-pratica-shade { display: block; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(16,36,46,.88) 0%, rgba(16,36,46,.55) 42%, rgba(16,36,46,0) 70%); }
+    .wb-pratica-text { position: absolute; left: 0; top: 0; bottom: 0; width: min(560px, 76%); justify-content: center; padding: clamp(24px, 4vw, 52px); pointer-events: none; }
+    .wb-chart { min-width: 700px; }
+    .wb-flags { gap: 60px; }
+    .wb-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 992px) {
+    .wb-benefits { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .wb-flags { gap: 110px; }
+  }
+  @media (min-width: 1200px) {
+    .wb-pratica-text { left: 300px; top: 50px; bottom: auto; }
+    .wb-flags { gap: 170px; }
+    .wb-gal { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
 </style>
 </helmet>
 
-<div style="width:100%; background:#10242E; color:#C6D4DA; font-size:13px; padding:9px 20px; display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:center; align-items:center;">
-  <span style="font-weight:600; color:#fff;">Central de vendas 11 4646-3300</span>
-  <span>vendas@banderart.com.br</span>
-  <span style="color:#7E99A4;">Fábrica própria em Itaquaquecetuba / SP — produzido no Brasil</span>
+<div class="w-100 d-flex flex-wrap justify-content-center align-items-center column-gap-4 row-gap-1 px-3 py-2" style="background:#10242E; color:#C6D4DA; font-size:13px;">
+  <a href="tel:+551146463300" style="font-weight:600; color:#fff;">Central de vendas 11 4646-3300</a>
+  <a href="mailto:vendas@banderart.com.br" style="color:#C6D4DA;">vendas@banderart.com.br</a>
+  <span class="d-none d-md-inline" style="color:#7E99A4;">Fábrica própria em Itaquaquecetuba / SP — produzido no Brasil</span>
 </div>
 
-<header style="position:sticky; top:0; z-index:40; background:rgba(255,255,255,0.96); backdrop-filter:blur(8px); border-bottom:1px solid #E2DED6;">
-  <div style="max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
-    <a href="https://banderart.com.br" style="display:flex; align-items:center; gap:10px;">
-      <img src="https://banderart.com.br/wp-content/themes/Banderart/assets/images/logo.png" alt="Banderart" style="height:38px; width:auto; display:block;">
-    </a>
-    <nav style="display:flex; gap:20px; flex-wrap:wrap; font-size:14px; font-weight:600; color:#3A5460; margin-left:auto;">
-      <a href="#produto" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">O produto</a>
-      <a href="#tamanhos" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Tamanhos</a>
-      <a href="#arte" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Envio da arte</a>
-      <a href="#gabaritos" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Gabaritos</a>
-      <a href="#galeria" style="color:#3A5460; padding:4px 0; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Galeria</a>
-    </nav>
-    <a href="#pedido" style="background:#306176; color:#fff; padding:11px 20px; border-radius:2px; font-size:14px; font-weight:700; letter-spacing:0.01em; transition:transform .16s ease, background .18s ease, box-shadow .18s ease;" style-hover="background:#1F4454; transform:translateY(-2px); box-shadow:0 8px 18px rgba(16,36,46,.22);" style-active="transform:translateY(0) scale(.98);">Montar meu pedido</a>
-  </div>
+<header class="sticky-top" style="z-index:40; background:rgba(255,255,255,0.96); backdrop-filter:blur(8px); border-bottom:1px solid #E2DED6;">
+  <nav class="navbar navbar-expand-lg" style="padding:0;">
+    <div class="container-fluid mx-auto wb-px py-2 py-lg-3" style="max-width:1200px;">
+      <a class="navbar-brand d-flex align-items-center m-0 p-0 me-auto me-lg-4" href="https://banderart.com.br">
+        <img src="https://banderart.com.br/wp-content/themes/Banderart/assets/images/logo.png" alt="Banderart" style="height:38px; width:auto; max-width:100%; display:block;">
+      </a>
+      <a href="#pedido" class="order-1 order-lg-3 ms-lg-4 wb-px" style="background:#306176; color:#fff; padding-top:11px; padding-bottom:11px; border-radius:2px; font-size:14px; font-weight:700; letter-spacing:0.01em; white-space:nowrap; transition:transform .16s ease, background .18s ease, box-shadow .18s ease;" style-hover="background:#1F4454; transform:translateY(-2px); box-shadow:0 8px 18px rgba(16,36,46,.22);" style-active="transform:translateY(0) scale(.98);">Montar<span class="d-none d-sm-inline"> meu</span> pedido</a>
+      <button class="navbar-toggler order-2 order-lg-0 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#wbMenu" aria-controls="wbMenu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse order-3 order-lg-2" id="wbMenu">
+        <ul class="navbar-nav ms-lg-auto gap-lg-4 py-2 py-lg-0">
+        <li class="nav-item"><a class="nav-link px-0 py-2 py-lg-1" href="#produto" style="color:#3A5460; font-size:14px; font-weight:600; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">O produto</a></li>
+        <li class="nav-item"><a class="nav-link px-0 py-2 py-lg-1" href="#tamanhos" style="color:#3A5460; font-size:14px; font-weight:600; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Tamanhos</a></li>
+        <li class="nav-item"><a class="nav-link px-0 py-2 py-lg-1" href="#arte" style="color:#3A5460; font-size:14px; font-weight:600; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Envio da arte</a></li>
+        <li class="nav-item"><a class="nav-link px-0 py-2 py-lg-1" href="#gabaritos" style="color:#3A5460; font-size:14px; font-weight:600; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Gabaritos</a></li>
+        <li class="nav-item"><a class="nav-link px-0 py-2 py-lg-1" href="#galeria" style="color:#3A5460; font-size:14px; font-weight:600; border-bottom:2px solid transparent; transition:border-color .18s ease, color .18s ease;" style-hover="border-bottom-color:#C8481B; color:#10242E;">Galeria</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <section id="produto" style="background:#fff; border-bottom:1px solid #E2DED6;">
-  <div style="max-width:1200px; margin:0 auto; padding:56px 20px 64px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:48px; align-items:center; animation:wbFade .5s ease both;">
-    <div style="min-width:0;">
+  <div class="container-fluid mx-auto wb-px wb-hero" style="max-width:1200px; animation:wbFade .5s ease both;">
+   <div class="row g-4 wb-gx align-items-center">
+    <div class="col-12 col-md-6" style="min-width:0;">
       <div style="display:inline-flex; align-items:center; gap:8px; background:#E7EEF1; color:#1F4454; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:7px 12px; border-radius:2px;">Modelo exclusivo e patenteado Banderart®</div>
       <h1 style="font-family:'Archivo Black', Archivo, sans-serif; font-size:clamp(38px, 5.4vw, 62px); line-height:0.98; letter-spacing:-0.025em; margin:18px 0 0;">Wind Banner<br><span style="color:#306176;">sua marca girando</span> onde o público está</h1>
       <p style="font-size:18px; line-height:1.55; color:#3A5460; margin:20px 0 0; max-width:54ch; text-wrap:pretty;">Banner giratório de dupla face, vazado, em tecido Duralon® 100% poliéster com estrutura super reforçada em aço. Montagem em minutos, visibilidade de longe — em eventos, praia, pontos de venda ou na frente da sua empresa.</p>
@@ -67,35 +161,38 @@
       </div>
       <p style="font-size:13px; color:#6B8390; margin:16px 0 0;">Produção em 7 dias úteis após aprovação da arte. Orçamento sem compromisso.</p>
     </div>
-    <div style="min-width:0; position:relative;">
+    <div class="col-12 col-md-6">
+     <div style="min-width:0; position:relative;">
       <div style="aspect-ratio:4/5; background:#E7EEF1; border-radius:2px; overflow:hidden;">
         <img src="https://banderart.com.br/wp-content/uploads/2018/08/windbanner-3.jpg" alt="Wind Banner Banderart em evento ao ar livre" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.2s ease;" style-hover="transform:scale(1.04);">
       </div>
-      <div style="position:absolute; left:-12px; bottom:24px; background:#10242E; color:#fff; padding:16px 20px; max-width:230px; border-radius:2px; transform-origin:bottom center; animation:wbSway 6s ease-in-out infinite;">
+      <div class="wb-badge" style="position:absolute; bottom:24px; background:#10242E; color:#fff; padding:16px 20px; max-width:230px; border-radius:2px; transform-origin:bottom center; animation:wbSway 6s ease-in-out infinite;">
         <div style="font-family:'Archivo Black', Archivo, sans-serif; font-size:30px; line-height:1;">5,00 m</div>
         <div style="font-size:13px; color:#A9BEC7; margin-top:4px;">de altura no maior modelo — visível a centenas de metros</div>
       </div>
+     </div>
     </div>
+   </div>
   </div>
 </section>
 
 <section style="background:#10242E; border-bottom:1px solid #E2DED6;">
-  <div style="position:relative; width:100%; height:clamp(300px, 38vw, 480px); overflow:hidden;">
-    <img src="assets/MONTAGEM-WINDBANNER-1-300x200.jpg" alt="Wind Banners de vários modelos montados em fileira na calçada da praia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-    <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(16,36,46,.88) 0%, rgba(16,36,46,.55) 42%, rgba(16,36,46,0) 70%);"><div style="position: absolute; left: 300px; top: 50px; width: min(560px, 76%); padding: clamp(24px,4vw,52px); display: flex; flex-direction: column; justify-content: center; gap: 14px; pointer-events: none">
+  <div class="wb-pratica">
+    <img class="wb-pratica-img" src="assets/MONTAGEM-WINDBANNER-1-300x200.jpg" alt="Wind Banners de vários modelos montados em fileira na calçada da praia">
+    <div class="wb-pratica-shade"></div>
+    <div class="wb-pratica-text">
       <span style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Wind Banner na prática</span>
-      
-      <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:clamp(24px,3.4vw,40px); line-height:1.05; letter-spacing:-0.02em; color:#fff;">Uma fileira de bandeiras girando muda o fluxo de gente</div><p style="font-size:16px; line-height:1.5; color:#E6EDF0; margin:0; max-width:44ch;">Eventos, postos, praias, feiras e frente de loja — montados pela nossa equipe e por clientes de todo o Brasil.</p>
-    </div></div>
-    
+      <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:clamp(24px,3.4vw,40px); line-height:1.05; letter-spacing:-0.02em; color:#fff;">Uma fileira de bandeiras girando muda o fluxo de gente</div>
+      <p style="font-size:16px; line-height:1.5; color:#E6EDF0; margin:0; max-width:44ch;">Eventos, postos, praias, feiras e frente de loja — montados pela nossa equipe e por clientes de todo o Brasil.</p>
+    </div>
   </div>
 </section>
 
 <sc-if value="{{ completo }}" hint-placeholder-val="{{ true }}" style="display: none">
 <section style="background: #fff">
-  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+  <div class="container-fluid mx-auto wb-px wb-sec" style="max-width:1200px;">
     <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:0; max-width:24ch;">Por que o Wind Banner funciona melhor que um banner parado</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1px; background:#E2DED6; margin-top:36px; border:1px solid #E2DED6;">
+    <div class="wb-benefits" style="display:grid; gap:1px; background:#E2DED6; margin-top:36px; border:1px solid #E2DED6;">
       <div style="background:#fff; padding:28px; transition:transform .2s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,36,46,.10);">
         <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#C8481B; font-size:15px;">01</div>
         <h3 style="font-size:19px; margin:12px 0 8px; letter-spacing:-0.01em;">Gira com o vento</h3>
@@ -122,7 +219,7 @@
 </sc-if>
 
 <section id="tamanhos" style="background: #10242E; color: #fff">
-  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+  <div class="container-fluid mx-auto wb-px wb-sec" style="max-width:1200px;">
     <div style="display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-end; justify-content:space-between;">
       <div>
         <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:0;">Escolha o tamanho</h2>
@@ -134,8 +231,9 @@
       </div>
     </div>
 
-    <div style="margin-top:34px; background:#17323D; border:1px solid #23414E; border-radius:2px; overflow-x:auto;">
-      <div style="position:relative; min-width:700px; height:498px; padding:0 24px 0 56px;">
+    <div class="d-md-none" style="font-size:12px; color:#8FA9B4; margin-top:14px;">Deslize o gráfico para os lados para ver todos os tamanhos →</div>
+    <div style="margin-top:14px; background:#17323D; border:1px solid #23414E; border-radius:2px;">
+      <div class="wb-chart-scroll"><div class="wb-chart" style="position:relative; height:498px; padding:0 24px 0 56px;">
         <div style="position:absolute; left:56px; right:24px; bottom:436px; border-top:1px dashed #23414E;"></div>
         <span style="position:absolute; left:14px; bottom:428px; font-size:11px; font-weight:600; color:#8FA9B4;">5 m</span>
         <div style="position:absolute; left:56px; right:24px; bottom:358px; border-top:1px dashed #23414E;"></div>
@@ -148,7 +246,7 @@
         <span style="position:absolute; left:14px; bottom:116px; font-size:11px; font-weight:600; color:#8FA9B4;">1 m</span>
         <div style="position:absolute; left:20px; right:24px; bottom:46px; border-top:2px solid #3A5B69;"></div>
 
-        <div style="position: absolute; left: 56px; right: 24px; bottom: 48px; display: flex; align-items: flex-end; gap: clamp(170px,4.4vw,58px)">
+        <div class="wb-flags" style="position:absolute; left:56px; right:24px; bottom:48px; display:flex; align-items:flex-end;">
           <div style="position:relative; display:flex; flex-direction:column; align-items:center; flex:none;">
             <svg viewBox="0 0 40 175" width="31" height="137" role="img" aria-label="Silhueta de pessoa com 1,75 m de altura" style="display:block;">
               <circle cx="20" cy="15" r="12" fill="#7E99A4"></circle>
@@ -201,28 +299,28 @@
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
 
-      <div style="border-top:1px solid #23414E; padding:22px 24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px; align-items:center;">
-        <div>
+      <div style="border-top:1px solid #23414E; padding:22px 24px;"><div class="row g-4 align-items-center">
+        <div class="col-12 col-sm-6 col-lg-3">
           <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Selecionado</div>
           <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:24px; color:#fff; margin-top:6px;">{{ sizeLabel }}</div>
           <div style="font-size:13px; color:#FFB27A; margin-top:4px;">{{ sizeUse }}</div>
           <div style="font-size:15px; color:#fff; margin-top:10px;"><span style="color:#8FA9B4; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">Bandeira impressa</span><br><strong style="font-size:20px;">{{ sizePreco }}</strong> <span style="font-size:12px; color:#8FA9B4;">por unidade</span></div>
         </div>
-        <div>
+        <div class="col-12 col-sm-6 col-lg-3">
           <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Área de arte</div>
           <div style="font-size:16px; color:#fff; margin-top:8px; line-height:1.45;">{{ sizeArea }}</div>
         </div>
-        <div>
+        <div class="col-12 col-sm-6 col-lg-3">
           <div style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#8FA9B4;">Fixação recomendada</div>
           <div style="font-size:16px; color:#fff; margin-top:8px; line-height:1.45;">{{ sizeBase }}</div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="col-12 col-sm-6 col-lg-3" style="display:flex; flex-direction:column; gap:8px;">
           <a href="#gabaritos" onClick="{{ gabaritoDoTamanho }}" style="text-align:center; background:#306176; color:#fff; padding:13px 18px; border-radius:2px; font-size:14px; font-weight:700; transition:background .18s ease, transform .16s ease;" style-hover="background:#3D7590; transform:translateY(-2px);" style-active="transform:translateY(0) scale(.98);">Baixar gabarito deste tamanho</a>
           <a href="#pedido" style="text-align:center; border:1px solid #3A5B69; color:#C6D4DA; padding:12px 18px; border-radius:2px; font-size:14px; font-weight:700; transition:background .18s ease, color .18s ease;" style-hover="background:#23414E; color:#fff;">Usar no pedido</a>
         </div>
-      </div>
+      </div></div>
     </div>
     <p style="font-size:14px; color:#A9BEC7; margin:16px 0 0;">Projetos especiais em outras medidas: fale com o comercial em vendas@banderart.com.br.</p>
   </div>
@@ -230,8 +328,9 @@
 
 
 <section id="arte" style="background:#fff; border-top:1px solid #E2DED6;">
-  <div style="max-width:1200px; margin:0 auto; padding:64px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:44px;">
-    <div style="min-width:0;">
+  <div class="container-fluid mx-auto wb-px wb-sec" style="max-width:1200px;">
+   <div class="row g-4 wb-gx">
+    <div class="col-12 col-lg-6" style="min-width:0;">
       <div style="display:inline-block; background:#FCE9E0; color:#A93A13; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:7px 12px; border-radius:2px;">Envio da arte</div>
       <h2 style="font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.02em; margin:16px 0 0;">Mande sua arte em alta resolução junto com o pedido</h2>
       <p style="font-size:17px; line-height:1.55; color:#3A5460; margin:16px 0 0; max-width:56ch; text-wrap:pretty;">A impressão é por sublimação direta no Duralon®: o que sai no tecido é exatamente o que está no seu arquivo, ampliado para até 5 metros. Arquivo baixado da internet, print de tela ou logo tirado do site não aguentam essa ampliação — saem borrados e serrilhados.</p>
@@ -264,8 +363,8 @@
       
     </div>
 
-    <div id="gabaritos" style="min-width:0;">
-      <div style="background: #E7EEF1; border: 1px solid #C9D9DF; border-radius: 2px; padding: clamp(22px,3vw,30px); width: 565px; height: 863px">
+    <div id="gabaritos" class="col-12 col-lg-6" style="min-width:0;">
+      <div class="h-100" style="background:#E7EEF1; border:1px solid #C9D9DF; border-radius:2px; padding:clamp(22px,3vw,30px);">
         <div style="font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#C8481B;">Gabaritos</div>
         <h3 style="font-size:26px; letter-spacing:-0.02em; margin:12px 0 0;">Baixe o gabarito do seu tamanho</h3>
         <p style="font-size:16px; line-height:1.55; color:#3A5460; margin:12px 0 0;">Cada gabarito vem em PDF e AI, na escala 1:10, com as marcações de corte, sangria e área da bainha da haste. Monte sua arte dentro dele e envie no pedido.</p>
@@ -290,11 +389,12 @@
         <div style="font-size:13px; color:#3A5460; line-height:1.5; margin-top:14px;">Projeto especial? Peça o gabarito sob medida em vendas@banderart.com.br.</div>
       </div>
     </div>
+   </div>
   </div>
 </section>
 
 <section id="galeria" style="background:#10242E; color:#fff; border-top:1px solid #E2DED6;">
-  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
+  <div class="container-fluid mx-auto wb-px wb-sec" style="max-width:1200px;">
     <div style="display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-end; justify-content:space-between;">
       <div style="min-width:0; max-width:52ch;">
         <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Galeria</div>
@@ -304,7 +404,7 @@
       <a href="#pedido" style="font-size:15px; font-weight:700; color:#FFB27A; border-bottom:2px solid #FFB27A; padding-bottom:3px; text-decoration:none; transition:color .18s ease, border-color .18s ease;" style-hover="color:#fff; border-color:#fff;">Quero um assim →</a>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin-top:36px;">
+    <div class="wb-gal" style="margin-top:36px;">
       <div style="grid-column:{{ gal.g1.span }}; height:{{ gal.g1.h }}; position:relative; cursor:pointer; transition:height .3s ease; outline:{{ gal.g1.ring }}; outline-offset:-2px;" onClick="{{ gal.g1.pick }}">
         <img src="assets/Windbanner-2-1-300x300.jpg" alt="Wind Banner com base de água instalado em área externa" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
@@ -333,14 +433,14 @@
 </section>
 
 <section id="pedido" style="background:#F6F3EE; border-top:1px solid #E2DED6;">
-  <div style="max-width:1200px; margin:0 auto; padding:64px 20px;">
-    <div style="max-width:60ch;">
+  <div class="container-fluid mx-auto wb-px wb-sec" style="max-width:1200px;">
+    <div style="max-width:60ch; margin-bottom:36px;">
       <h2 style="font-size:clamp(28px,3.6vw,40px); letter-spacing:-0.025em; margin:0;">Monte seu pedido</h2>
       <p style="font-size:17px; line-height:1.55; color:#3A5460; margin:12px 0 0;">Escolha tamanho, quantidade e estrutura, anexe a arte (ou peça a criação) e envie. O comercial responde com valor, prazo e frete.</p>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:24px; margin-top:36px; align-items:start;">
-      <div style="background:#fff; border:1px solid #DDE6E9; border-radius:2px; padding:clamp(20px,3vw,34px); min-width:0;">
+    <div class="row g-4 align-items-start">
+      <div class="col-12 col-lg-6"><div style="background:#fff; border:1px solid #DDE6E9; border-radius:2px; padding:clamp(20px,3vw,34px); min-width:0;">
         <sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
           <div style="animation:wbRise .35s ease both;">
             <div style="font-family:'Archivo Black',Archivo,sans-serif; font-size:26px; letter-spacing:-0.02em;">Pedido enviado ✓</div>
@@ -352,9 +452,9 @@
 
         <sc-if value="{{ editando }}" hint-placeholder-val="{{ true }}">
         <div>
-          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390;">1 — Produto</div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:16px;">
-            <label style="display:block;">
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-bottom:16px;">1 — Produto</div>
+          <div class="row g-3">
+            <label class="col-12 col-sm-6" style="display:block;">
               <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Tamanho da bandeira</span>
               <select value="{{ size }}" onChange="{{ onSize }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; background:#fff; color:#10242E; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;">
                 <option value="s1">0,70 × 2,00 m — R$ 690</option>
@@ -364,7 +464,7 @@
                 <option value="esp">Projeto especial (descrever)</option>
               </select>
             </label>
-            <label style="display:block;">
+            <label class="col-12 col-sm-6" style="display:block;">
               <span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Quantidade de kits</span>
               <input type="number" min="1" step="1" value="{{ qty }}" onChange="{{ onQty }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;" style-hover="border-color:#9DB4BE;">
             </label>
@@ -454,12 +554,12 @@
             </div>
           </sc-if>
 
-          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px;">4 — Seus dados</div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:14px; margin-top:16px;">
-            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Nome *</span><input value="{{ f.nome }}" onChange="{{ on.nome }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.nome }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Empresa</span><input value="{{ f.empresa }}" onChange="{{ on.empresa }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">E-mail *</span><input type="email" value="{{ f.email }}" onChange="{{ on.email }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.email }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
-            <label style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">WhatsApp *</span><input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="(11) 90000-0000" style="width:100%; padding:13px 12px; border:1px solid {{ err.tel }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+          <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#6B8390; margin-top:32px; margin-bottom:16px;">4 — Seus dados</div>
+          <div class="row g-3">
+            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Nome *</span><input value="{{ f.nome }}" onChange="{{ on.nome }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.nome }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">Empresa</span><input value="{{ f.empresa }}" onChange="{{ on.empresa }}" style="width:100%; padding:13px 12px; border:1px solid #C9D9DF; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">E-mail *</span><input type="email" value="{{ f.email }}" onChange="{{ on.email }}" style="width:100%; padding:13px 12px; border:1px solid {{ err.email }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
+            <label class="col-12 col-sm-6" style="display:block;"><span style="display:block; font-size:14px; font-weight:700; margin-bottom:6px;">WhatsApp *</span><input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="(11) 90000-0000" style="width:100%; padding:13px 12px; border:1px solid {{ err.tel }}; border-radius:2px; font-size:15px; transition:border-color .18s ease;"></label>
             
           </div>
           <label style="display:block; margin-top:14px;">
@@ -474,7 +574,7 @@
           <p style="font-size:13px; color:#6B8390; margin:12px 0 0;">Enviar o pedido não gera compromisso de compra. Produção só após aprovação do layout digital.</p>
         </div>
         </sc-if>
-      </div><div style="min-width:0; position:sticky; top:96px;">
+      </div></div><div class="col-12 col-lg-6 align-self-start sticky-lg-top" style="min-width:0; top:96px; z-index:1;">
         <div style="background:#10242E; color:#fff; border-radius:2px; padding:clamp(20px,3vw,28px);">
           <div style="font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#FFB27A;">Resumo</div>
           <h3 style="font-size:21px; margin:10px 0 0; letter-spacing:-0.01em;">Seu pedido</h3>
@@ -508,22 +608,24 @@
 </section>
 
 <footer style="background:#10242E; color:#A9BEC7; border-top:4px solid #C8481B;">
-  <div style="max-width:1200px; margin:0 auto; padding:44px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:28px;">
-    <div>
+  <div class="container-fluid mx-auto wb-px py-5" style="max-width:1200px;">
+   <div class="row g-4">
+    <div class="col-12 col-md-4">
       <div style="font-family:'Archivo Black',Archivo,sans-serif; color:#fff; font-size:20px;">Banderart</div>
       <p style="font-size:14px; line-height:1.6; margin:10px 0 0;">Fábrica de bandeiras, mastros e Wind Banner desde 1998. Produção própria em Itaquaquecetuba / SP.</p>
     </div>
-    <div style="font-size:14px; line-height:1.9;">
+    <div class="col-12 col-md-4" style="font-size:14px; line-height:1.9;">
       <div style="color:#fff; font-weight:700; margin-bottom:6px;">Vendas</div>
-      11 4646-3300<br>vendas@banderart.com.br<br>Seg a sex, 8h às 17h30
+      <a href="tel:+551146463300" style="color:inherit;">11 4646-3300</a><br><a href="mailto:vendas@banderart.com.br" style="color:inherit;">vendas@banderart.com.br</a><br>Seg a sex, 8h às 17h30
     </div>
-    <div style="font-size:14px; line-height:1.9;">
+    <div class="col-12 col-md-4" style="font-size:14px; line-height:1.9;">
       <div style="color:#fff; font-weight:700; margin-bottom:6px;">Nesta página</div>
       <a href="#tamanhos" style="color:#A9BEC7;">Tamanhos</a><br>
       <a href="#gabaritos" style="color:#A9BEC7;">Gabaritos</a><br>
       <a href="#galeria" style="color:#A9BEC7;">Galeria</a><br>
       <a href="#pedido" style="color:#A9BEC7;">Montar pedido</a>
     </div>
+   </div>
   </div>
 </footer>
 
