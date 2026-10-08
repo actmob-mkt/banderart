@@ -795,5 +795,20 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script>
+function forceMute() {
+ document.querySelectorAll('video').forEach(function (v) {
+   v.muted = true;
+   v.defaultMuted = true;
+   v.setAttribute('muted', '');
+   var p = v.play();
+   if (p && p.catch) p.catch(function () {});
+ });
+}
+window.addEventListener('load', function () {
+ forceMute();
+ setTimeout(forceMute, 500);
+});
+</script>
 </body>
 </html>
